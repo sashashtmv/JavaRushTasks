@@ -23,7 +23,6 @@ public class Solution implements Serializable{
 
 
         public B(String nameA, String nameB) {
-            super(nameA);
             this.nameA += nameA;
             this.nameB = nameB;
         }

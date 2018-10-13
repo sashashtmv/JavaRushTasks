@@ -23,7 +23,7 @@ public class Solution {
             Human somePerson = new Human();
             somePerson.load(inputStream);
             inputStream.close();
-            //check here that ivanov equals to somePerson - проверьте тут, что ivanov и somePerson равны
+            System.out.println(ivanov.equals(somePerson));//check here that ivanov equals to somePerson - проверьте тут, что ivanov и somePerson равны
 
         } catch (IOException e) {
             //e.printStackTrace();
@@ -67,10 +67,24 @@ public class Solution {
         }
 
         public void save(OutputStream outputStream) throws Exception {
+            PrintWriter pr = new PrintWriter(outputStream);
+            pr.println(this.name);
+            for (Asset a : assets) {
+                pr.println(a.getName());
+                pr.println(a.getPrice());
+            }
+            pr.flush();
             //implement this method - реализуйте этот метод
         }
 
         public void load(InputStream inputStream) throws Exception {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            this.name = reader.readLine();
+            while (reader.ready()){
+                this.assets.add(
+                        new Asset(reader.readLine(),
+                                Double.parseDouble(reader.readLine())));
+            }
             //implement this method - реализуйте этот метод
         }
     }
